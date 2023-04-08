@@ -18,10 +18,14 @@ namespace Nodify
         public static readonly DependencyProperty FooterProperty = DependencyProperty.Register(nameof(Footer), typeof(object), typeof(Node), new FrameworkPropertyMetadata(OnFooterChanged));
         public static readonly DependencyProperty FooterTemplateProperty = DependencyProperty.Register(nameof(FooterTemplate), typeof(DataTemplate), typeof(Node));
         public static readonly DependencyProperty InputConnectorTemplateProperty = DependencyProperty.Register(nameof(InputConnectorTemplate), typeof(DataTemplate), typeof(Node));
+        public static readonly DependencyProperty FlowInputConnectorTemplateProperty = DependencyProperty.Register(nameof(FlowInputConnectorTemplate), typeof(DataTemplate), typeof(Node));
         protected internal static readonly DependencyPropertyKey HasFooterPropertyKey = DependencyProperty.RegisterReadOnly(nameof(HasFooter), typeof(bool), typeof(Node), new FrameworkPropertyMetadata(BoxValue.False));
         public static readonly DependencyProperty HasFooterProperty = HasFooterPropertyKey.DependencyProperty;
         public static readonly DependencyProperty OutputConnectorTemplateProperty = DependencyProperty.Register(nameof(OutputConnectorTemplate), typeof(DataTemplate), typeof(Node));
+        public static readonly DependencyProperty FlowOutputConnectorTemplateProperty = DependencyProperty.Register(nameof(FlowOutputConnectorTemplate), typeof(DataTemplate), typeof(Node));
         public static readonly DependencyProperty InputProperty = DependencyProperty.Register(nameof(Input), typeof(IEnumerable), typeof(Node));
+        public static readonly DependencyProperty FlowInputProperty = DependencyProperty.Register(nameof(FlowInput), typeof(IEnumerable), typeof(Node));
+        public static readonly DependencyProperty FlowOutputProperty = DependencyProperty.Register(nameof(FlowOutput), typeof(IEnumerable), typeof(Node));
         public static readonly DependencyProperty OutputProperty = DependencyProperty.Register(nameof(Output), typeof(IEnumerable), typeof(Node));
 
         /// <summary>
@@ -77,6 +81,15 @@ namespace Nodify
             get => (DataTemplate)GetValue(InputConnectorTemplateProperty);
             set => SetValue(InputConnectorTemplateProperty, value);
         }
+
+        /// <summary>
+        /// Gets or sets the template used to display the content of the control's <see cref="FlowInput"/> connectors.
+        /// </summary>
+        public DataTemplate FlowInputConnectorTemplate
+        {
+            get => (DataTemplate)GetValue(FlowInputConnectorTemplateProperty);
+            set => SetValue(FlowInputConnectorTemplateProperty, value);
+        }
         
         /// <summary>
         /// Gets or sets the template used to display the content of the control's <see cref="Output"/> connectors.
@@ -85,6 +98,14 @@ namespace Nodify
         {
             get => (DataTemplate)GetValue(OutputConnectorTemplateProperty);
             set => SetValue(OutputConnectorTemplateProperty, value);
+        }
+        /// <summary>
+        /// Gets or sets the template used to display the content of the control's <see cref="Output"/> connectors.
+        /// </summary>
+        public DataTemplate FlowOutputConnectorTemplate
+        {
+            get => (DataTemplate)GetValue(FlowOutputConnectorTemplateProperty);
+            set => SetValue(FlowOutputConnectorTemplateProperty, value);
         }
         
         /// <summary>
@@ -95,11 +116,29 @@ namespace Nodify
             get => (IEnumerable)GetValue(InputProperty);
             set => SetValue(InputProperty, value);
         }
+
+        /// <summary>
+        /// Gets or sets the data for the flow input <see cref="Connector"/>s of this control.
+        /// </summary>
+        public IEnumerable FlowInput
+        {
+            get => (IEnumerable)GetValue(FlowInputProperty);
+            set => SetValue(FlowInputProperty, value);
+        }
         
         /// <summary>
         /// Gets or sets the data for the output <see cref="Connector"/>s of this control.
         /// </summary>
         public IEnumerable Output
+        {
+            get => (IEnumerable)GetValue(OutputProperty);
+            set => SetValue(OutputProperty, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the data for the output <see cref="Connector"/>s of this control.
+        /// </summary>
+        public IEnumerable FlowOutput
         {
             get => (IEnumerable)GetValue(OutputProperty);
             set => SetValue(OutputProperty, value);
