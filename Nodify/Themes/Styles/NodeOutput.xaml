@@ -38,7 +38,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:NodeOutput}">
-                    <Grid Background="{TemplateBinding Background}">
+                    <Grid Background="{TemplateBinding Background}" HorizontalAlignment="Right">
                         <Border Visibility="Collapsed"
                                 x:Name="Highlight"
                                 OpacityMask="{StaticResource FadeOpacityMask}"
